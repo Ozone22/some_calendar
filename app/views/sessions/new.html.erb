@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info" >
+
+      <div class="panel-heading">
+        <div class="panel-title">Login</div>
+        <div class="form_additional_links">
+          <%= link_to 'Sign up', signup_path %>
+        </div>
+      </div>
+
+      <div class="panel-body">
+
+        <%= form_tag(sessions_path, method: :post, class: 'form-horizontal') do |f| %>
+
+            <div class="form_input input-group">
+              <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+              <%= text_field_tag :email, nil, class: 'form-control', placeholder: 'Email' %>
+            </div>
+
+            <div class="form_input input-group">
+              <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+              <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'Password' %>
+            </div>
+
+            <div class="form_input input-group">
+              <div class="checkbox">
+                <%= check_box_tag :remember_me %>
+                <%= label_tag :remember_me, 'Remember me' %>
+              </div>
+            </div>
+
+            <div class="form_input form-group">
+              <div class="col-sm-7 col-sm-offset-5 controls">
+                <%= submit_tag 'Sign in', class: 'btn btn-success' %>
+              </div>
+            </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

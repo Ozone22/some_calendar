@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      user:
+        attributes:
+          email:
+            wrong_email: "wrong email address"
+          password:
+            wrong_pass: "must contain at least one digit and one latin capital letter"

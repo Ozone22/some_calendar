@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="mainbox col-md-8 col-md-offset-2 col-sm-9 col-sm-offset-2">
+    <div class="panel panel-info" >
+
+      <div class="panel-heading">
+        <div class="panel-title">Registration</div>
+        <div class="form_additional_links">
+          <%= link_to 'Sign in', signin_path %>
+        </div>
+      </div>
+
+      <div class="panel-body">
+
+        <%= form_for(@user, html: { class: 'form-horizontal'}) do |f| %>
+
+          <%= render 'shared/error_messages', object: @user %>
+
+          <div class="form-group">
+            <%= f.label :email, class: 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :fio, 'Full name', class: 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :fio, class: 'form-control', placeholder: 'Full name(not required)' %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label :password, class: 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation, 'Confirmation', class: 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirmation' %>
+            </div>
+          </div>
+
+          <div class="form_input form-group">
+            <div class="col-sm-7 col-sm-offset-5 controls">
+              <%= f.submit 'Create account', class: 'btn btn-success' %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

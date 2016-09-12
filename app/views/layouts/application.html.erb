@@ -7,8 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
 
-<%= yield %>
+    <%= render 'layouts/flash_messages' %>
 
+    <div class="row">
+
+      <%= yield %>
+
+    </div>
+
+    <%= debug(params) if Rails.env.development? %>
+
+  </div>
 </body>
 </html>
