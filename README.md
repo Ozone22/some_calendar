@@ -11,5 +11,5 @@ Now Finished:
 
 For this moment, possible solution for database schema:
 
-<img src="http://res.cloudinary.com/djfhtqjzs/image/upload/v1473708144/Calendar_pvcbuo.png">
+![ER-diagram image](https://res.cloudinary.com/djfhtqjzs/image/upload/v1473708144/Calendar_pvcbuo.png)
 
