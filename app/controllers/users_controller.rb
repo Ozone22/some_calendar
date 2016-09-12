@@ -20,9 +20,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(id: params[:id])
   end
 
   def update
+    @user = User.find_by(id: params[:id])
+    if @user && @user.update_attributes(user_params)
+      flash[:success] = 'Successfully updated'
+      redirect_to user_events_path(@user)
+    else
+      render 'edit'
+    end
   end
 
   private

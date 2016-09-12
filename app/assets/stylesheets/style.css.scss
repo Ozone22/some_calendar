@@ -10,12 +10,21 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
+header {
+  a {
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
 // Authorization form
 
 .mainbox {
 
   font-weight: normal;
-  margin-top: 50px;
+  margin-top: 30px;
 
   .form_additional_links {
     float: right;
@@ -25,12 +34,7 @@ $gray-medium-light: #eaeaea;
   }
 
   .panel-body {
-    padding-top: 30px;
-  }
-
-  #error_explanation h2 {
-    font-size: 1.2em;
-    font-weight: bold;
+    padding-top: 25px;
   }
 
   .form_input {
@@ -41,12 +45,22 @@ $gray-medium-light: #eaeaea;
       margin-left: 30px;
     }
   }
+}
 
-  .field_with_errors {
-    @extend .has-error;
-    .form-control {
-      color: $state-danger-text;
-    }
+#error_explanation h1 {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.page_title {
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
   }
 }
 
