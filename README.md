@@ -6,6 +6,8 @@ Now Finished:
 
 - User registration\authorization
 - User edit, update
+- Event create\update\destroy - through ajax and jquery
+- Some policy for events routing(correct_user, etc.)
 
 ### ER-diagram
 
