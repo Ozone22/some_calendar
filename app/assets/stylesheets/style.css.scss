@@ -19,6 +19,11 @@ header {
   }
 }
 
+.page_title {
+  margin-bottom: 3%;
+  text-align: center;
+}
+
 // Authorization form
 
 .mainbox {
@@ -52,17 +57,44 @@ header {
   font-weight: bold;
 }
 
-.page_title {
-  margin-bottom: 3%;
-  text-align: center;
-}
-
 .field_with_errors {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
   }
 }
+
+// Sidebar
+
+.events_sidebar {
+  height: 100%;
+  font-size: 1.1em;
+  a {
+    text-decoration: none;
+    color: $text_color;
+  }
+  i {
+    margin-right: 10px;
+  }
+  color: $text_color;
+  margin-bottom: 10%;
+}
+
+// Calendar
+
+.calendar-heading {
+  margin-bottom: 15px;
+  i {
+    font-size: 2em;
+  }
+  .calendar-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 10px 0 10px;
+  }
+}
+
+// Development
 
 .debug_dump {
   clear: both;

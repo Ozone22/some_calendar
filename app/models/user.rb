@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :events, dependent: :destroy
+
   attr_accessor :origin_remember_token
 
   before_save { self.email.downcase! }

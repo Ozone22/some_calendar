@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :events, except: [:show]
   end
 
+  resources :events, only: [:index]
+
   resources :sessions, only: [:new, :create, :destroy]
 
   get '/signup' => 'users#new'

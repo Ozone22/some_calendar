@@ -31,6 +31,15 @@ gem 'figaro'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
+# For datetime format (input field)
+gem 'bootstrap-datepicker-rails'
+
+# Decorator
+gem 'draper'
+
+# Calendar view
+gem 'simple_calendar'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -55,6 +64,7 @@ end
 group :test do
   # Test Fixtures-data
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 
 end
 

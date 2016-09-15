@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def correct_user
-    user = User.find_by(id: params[:user_id] || params[:id])
+    user = User.find_by(id: params[:id])
     redirect_to user_events_path(current_user) unless current_user?(user)
   end
 

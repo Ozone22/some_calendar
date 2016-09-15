@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:events) }
 
   it { should be_valid }
 
@@ -147,6 +148,16 @@ describe User do
       it { should_not eq user_for_invalid_password }
       specify { expect(user_for_invalid_password).to be_falsey }
     end
+
+  end
+
+  describe 'created events' do
+    let(:event) do
+      @user.save
+      @user.events.create(name: 'someEvent', start_date: DateTime.tomorrow)
+    end
+
+    specify { expect(@user.events).to include(event) }
 
   end
 

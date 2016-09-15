@@ -1,0 +1,21 @@
+<div class="col-md-3">
+  <div class="sidebar-nav sidebar-fixed-left events_sidebar">
+    <ul class="nav">
+      <li>
+        <%= link_to new_user_event_path(current_user), 'data-toggle' => 'modal', 'data-target' => '#myModal', remote: true do %>
+          <i class="fa fa-calendar-plus-o"></i>Create event
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_events_path(current_user) do %>
+          <i class="fa fa-calendar-check-o"></i>My events
+        <% end %>
+      </li>
+      <li>
+        <%= link_to events_path do %>
+          <i class="fa fa-calendar"></i>All events
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

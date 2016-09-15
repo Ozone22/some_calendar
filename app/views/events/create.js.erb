@@ -1,0 +1,10 @@
+<% if @event.errors.any? %>
+  $('#ajax_body').html("<%= j (render 'events/form') %>");
+<% else %>
+  $('#myModal').modal('hide');
+
+  <% if @event.in_current_month? %>
+    getRightDateField(<%= @event.start_date.day %>).append("<%= j (render @event) %>");
+  <% end %>
+
+<% end %>

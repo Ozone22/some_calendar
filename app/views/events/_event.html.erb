@@ -1,0 +1,4 @@
+<div id="event<%= event.id %>">
+  <%= link_to event.name, edit_user_event_path(current_user, event),
+              remote: true, 'data-toggle' => 'modal', 'data-target' => '#myModal' %>
+</div>

@@ -1,0 +1,15 @@
+<%= render 'layouts/sidebar' %>
+
+<div class="col-md-9">
+  <div class = "row">
+
+    <%= render 'layouts/modal' %>
+
+    <%= month_calendar(attribute: :start_date, events: @events) do |date, events| %>
+      <%= date.day %>
+
+      <%= render events %>
+
+    <% end %>
+  </div>
+</div>

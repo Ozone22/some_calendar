@@ -29,3 +29,7 @@ en:
             wrong_email: "wrong email address"
           password:
             wrong_pass: "must contain at least one digit and one latin capital letter"
+      event:
+        attributes:
+          start_time:
+            wrong_time: "should be at least in current time"

@@ -1,0 +1,16 @@
+$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+var eventBlockId;
+
+$(function() {
+  $("td > div").on("click", function() {
+    eventBlockId = $(this).attr("id");
+  });
+});
+
+function removeLastPickedBlock() {
+  $("#" + eventBlockId).remove();
+}
+
+function getRightDateField(date) {
+  return $('tbody').find('td').filter(':contains("' + date + '")');
+}
