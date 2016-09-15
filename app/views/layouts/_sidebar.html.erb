@@ -7,14 +7,10 @@
         <% end %>
       </li>
       <li>
-        <%= link_to user_events_path(current_user) do %>
-          <i class="fa fa-calendar-check-o"></i>My events
-        <% end %>
+        <%= active_link_to '<i class="fa fa-calendar-check-o"></i>My events'.html_safe, user_events_path(current_user) %>
       </li>
       <li>
-        <%= link_to events_path do %>
-          <i class="fa fa-calendar"></i>All events
-        <% end %>
+        <%= active_link_to '<i class="fa fa-calendar"></i>All events'.html_safe, events_path %>
       </li>
     </ul>
   </div>

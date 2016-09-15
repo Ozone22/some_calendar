@@ -72,6 +72,9 @@ header {
   a {
     text-decoration: none;
     color: $text_color;
+    &.active {
+      background-color: #eeeeee;
+    }
   }
   i {
     margin-right: 10px;
