@@ -20,17 +20,13 @@ class EventsController < BaseEventsController
   end
 
   def edit
-    @event = @event.decorate
     respond_to do |format|
       format.js
     end
   end
 
   def update
-    if @event.update_attributes(event_params)
-      @event = @event.decorate
-      @event_instances = EventInstance.single_event_occurrences(@event)
-    end
+    @event_instances = EventInstance.single_event_occurrences(@event) if @event.update_attributes(event_params)
     respond_to do |format|
       format.js
     end
