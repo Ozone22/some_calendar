@@ -1,4 +1,4 @@
-module EventViewHelper
+module EventsHelper
 
   def formatted_date(date)
     time_rule = '%Y-%m-%d'

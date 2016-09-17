@@ -1,5 +1,5 @@
 class BaseEventsController < ApplicationController
-  include EventViewHelper
+  include EventsHelper
 
   protected
 
