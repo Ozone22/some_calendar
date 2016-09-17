@@ -3,32 +3,43 @@
     <%= render 'shared/error_messages', object: @event %>
 
     <div class="form-group">
-      <%= f.label :name, class: 'col-md-2 control-label' %>
+      <%= f.label :name, class: 'col-md-3 control-label' %>
       <div class="col-md-8">
         <%= f.text_field :name, class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :start_date, 'Date', class: 'col-md-2 control-label' %>
+      <%= f.label :start_date, 'Date', class: 'col-md-3 control-label' %>
       <div class="col-md-8">
-        <%= f.text_field :start_date, 'data-provide' => 'datepicker' %>
+        <%= f.text_field :start_date, value: formatted_date(@event.start_date), class: 'form-control', 'data-provide' => 'datepicker' %>
       </div>
     </div>
 
+    <div class="form-group">
+      <%= f.label :repeat_type, 'Repeat', class: 'col-md-3 control-label' %>
+      <div class="col-md-8">
+        <%= f.select :repeat_type, Event::REPEATS_OPTIONS, {}, {class: 'form-control' } %>
+      </div>
+    </div>
+
+    <%= render 'events/repeats_daily_options', form: f%>
+
     <div class="row">
 
-      <% if local_assigns[:form_buttons] %>
+      <% if local_assigns[:show_form_buttons] %>
 
         <div class="pull-right col-md-2 form_input">
           <%= f.submit 'Submit', class: 'btn btn-primary' %>
         </div>
 
-        <% if local_assigns[:form_delete_link] %>
-            <div class="pull-right col-md-2 form_input">
-              <%= link_to('Remove', user_event_path(current_user, @event), method: :delete,
-                          remote: true, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger') %>
-            </div>
+        <% if local_assigns[:show_delete_link] %>
+
+          <div class="pull-right col-md-2 form_input">
+            <%= link_to('Remove', user_event_path(current_user, @event), method: :delete,
+                        remote: true, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger') %>
+          </div>
+
         <% end %>
 
         <div class="pull-right col-md-2 form_input">

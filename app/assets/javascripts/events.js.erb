@@ -1,16 +1,14 @@
 $.fn.datepicker.defaults.format = "yyyy-mm-dd";
-var eventBlockId;
 
 $(function() {
-  $("td > div").on("click", function() {
-    eventBlockId = $(this).attr("id");
+  $(document).on('change','#event_repeat_type',function() {
+    $('.event_option').hide();
+    switch (this.value) {
+      case 'daily':
+            $('#repeats_daily_options').css('display','block');
+            break;
+      case 'weekly':
+            break;
+    }
   });
 });
-
-function removeLastPickedBlock() {
-  $("#" + eventBlockId).remove();
-}
-
-function getRightDateField(date) {
-  return $('tbody').find('td').filter(':contains("' + date + '")');
-}

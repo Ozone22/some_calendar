@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   resources :users, only: [:new, :create, :edit, :update] do
-    resources :events, except: [:show]
+    resources :events, except: [:show, :index]
+    get '/events' => 'event_instances#index'
   end
 
-  resources :events, only: [:index]
+  get '/events' => 'event_instances#index'
 
   resources :sessions, only: [:new, :create, :destroy]
 

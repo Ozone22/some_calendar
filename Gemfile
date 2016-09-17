@@ -37,6 +37,9 @@ gem 'bootstrap-datepicker-rails'
 # Decorator
 gem 'draper'
 
+# Schedule
+gem 'ice_cube'
+
 # Calendar view
 gem 'simple_calendar'
 

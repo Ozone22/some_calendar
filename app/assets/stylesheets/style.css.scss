@@ -73,7 +73,7 @@ header {
     text-decoration: none;
     color: $text_color;
     &.active {
-      background-color: #eeeeee;
+      background-color:  #eee;
     }
   }
   i {
@@ -96,6 +96,13 @@ header {
     margin: 0 10px 0 10px;
   }
 }
+
+//Event form
+
+#repeats_daily_options { display:none; }
+#repeats_weekly_options { display:none; }
+#repeats_monthly_options { display:none; }
+#repeats_yearly_options { display:none; }
 
 // Development
 

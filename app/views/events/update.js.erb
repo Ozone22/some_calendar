@@ -1,9 +1,11 @@
 <% if @event.errors.any? %>
-  $('#ajax_body').html("<%= j (render 'events/form') %>");
+  $('#ajax_body').html("<%= j (render 'events/form', show_form_buttons: true, show_delete_link: true) %>");
 <% else %>
-  $('#myModal').modal('hide');
-  removeLastPickedBlock();
+  $(".event<%= @event.id %>").remove();
   <% if @event.in_current_month? %>
-    getRightDateField(<%= @event.start_date.day %>).append("<%= j (render @event) %>");
+    <% @event_instances.each do |event_instance| %>
+      $("#<%= formatted_date(event_instance.start_date) %>").append("<%= j (render event_instance) %>");
+    <% end %>
   <% end %>
+  $('#myModal').modal('hide');
 <% end %>

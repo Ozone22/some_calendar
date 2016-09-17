@@ -1,17 +1,8 @@
-class EventsController < ApplicationController
+class EventsController < BaseEventsController
 
   before_action :signed_in_user
-  before_action :correct_user, only: [:index, :new, :create]
+  before_action :correct_user, only: [:new, :create]
   before_action :creator, only: [:edit, :update, :destroy]
-
-  def index
-    @events = if params[:user_id]
-                current_user.events.all
-              else
-                Event.all
-              end
-    @events = @events.decorate
-  end
 
   def new
     @event = Event.new.decorate
@@ -21,8 +12,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
-    @event = @event.decorate if @event.save
+    @event = current_user.events.build(event_params).decorate
+    @event_instances = EventInstance.single_event_occurrences(@event) if @event.save
     respond_to do |format|
       format.js
     end
@@ -36,7 +27,10 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = @event.decorate if @event.update_attributes(event_params)
+    if @event.update_attributes(event_params)
+      @event = @event.decorate
+      @event_instances = EventInstance.single_event_occurrences(@event)
+    end
     respond_to do |format|
       format.js
     end
@@ -52,14 +46,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :start_date)
-  end
-
-  def correct_user
-    if (user_id = params[:user_id])
-      user = User.find_by(id: user_id)
-      redirect_to user_events_path(current_user) unless current_user?(user)
-    end
+    params.require(:event).permit(:name, :start_date, :user_id, :repeat_type, :repeats_every_n_days)
   end
 
   def creator
@@ -67,7 +54,7 @@ class EventsController < ApplicationController
       @event = @event.decorate
       render 'events/show' unless current_user?(@event.user)
     else
-      redirect_to :back
+      redirect_to user_events_path
     end
   end
 
