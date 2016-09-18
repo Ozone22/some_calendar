@@ -9,11 +9,13 @@ class EventInstance
     self.event_id = event_id
   end
 
-  def self.single_event_occurrences(event, end_date = nil)
+  def self.single_event_occurrences(event, month_date = nil, get_next_month_week = true)
 
-    end_date ||= EventInstanceHelper.last_day_of_month
+    if month_date.nil? || get_next_month_week
+      month_date = EventInstanceHelper.next_month_first_week_day(month_date)
+    end
 
-    event.schedule.occurrences(end_date).map do |date|
+    event.schedule.occurrences(month_date).map do |date|
       event_instance = EventInstance.new(event.name, date, event.id)
       event_instance
     end
@@ -22,7 +24,7 @@ class EventInstance
 
   def self.occurrences(user = nil, end_date = nil)
 
-    end_date = EventInstanceHelper.last_day_of_month(end_date)
+    end_date = EventInstanceHelper.next_month_first_week_day(end_date)
 
     events = if user.nil?
                Event.where('start_date <= ?', end_date)
@@ -31,7 +33,7 @@ class EventInstance
              end
 
     events.map { |event|
-      EventInstance.single_event_occurrences(event, end_date)
+      EventInstance.single_event_occurrences(event, end_date, false)
     }.flatten
 
   end

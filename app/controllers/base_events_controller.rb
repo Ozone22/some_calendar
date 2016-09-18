@@ -10,4 +10,13 @@ class BaseEventsController < ApplicationController
     end
   end
 
+  def date_param
+    month_date = if params[:current_page_date].nil?
+                   params[:start_date]
+                 else
+                   params[:current_page_date]
+                 end
+    month_date.to_time unless month_date.nil?
+  end
+
 end

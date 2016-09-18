@@ -13,7 +13,9 @@ class EventsController < BaseEventsController
 
   def create
     @event = current_user.events.build(event_params).decorate
-    @event_instances = EventInstance.single_event_occurrences(@event) if @event.save
+    @event_instances = if @event.save
+                         EventInstance.single_event_occurrences(@event, date_param)
+                       end
     respond_to do |format|
       format.js
     end
@@ -26,7 +28,9 @@ class EventsController < BaseEventsController
   end
 
   def update
-    @event_instances = EventInstance.single_event_occurrences(@event) if @event.update_attributes(event_params)
+    @event_instances = if @event.update_attributes(event_params)
+                         EventInstance.single_event_occurrences(@event, date_param)
+                       end
     respond_to do |format|
       format.js
     end
@@ -42,7 +46,8 @@ class EventsController < BaseEventsController
   private
 
   def event_params
-    params.require(:event).permit(:name, :start_date, :user_id, :repeat_type, :repeats_every_n_days)
+    params.require(:event).permit(:name, :start_date, :repeat_type, :repeats_every_n_days, :repeats_every_n_weeks,
+                                  :repeats_weekly_days_of_the_week => [])
   end
 
   def creator

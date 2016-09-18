@@ -1,0 +1,21 @@
+<div id="repeats_weekly_options" class="event_option">
+  <div class="form-group ">
+    <%= form.label :repeats_every_n_weeks, 'Every n weeks', class: 'col-md-3 control-label' %>
+    <div class="col-md-8">
+      <%= form.number_field :repeats_every_n_weeks, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :repeats_weekly_days_of_the_week, 'Every n weeks', class: 'col-md-3 control-label' %>
+    <div class="col-md-8">
+      <%= form.collection_check_boxes(:repeats_weekly_days_of_the_week, array_format(Event::DAYS_OF_THE_WEEK),
+                                      :last, :first, include_hidden: false) do |b| %>
+        <div class="col-md-4">
+          <div class="checkbox">
+            <%= b.label { b.check_box + b.text } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

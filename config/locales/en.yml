@@ -33,3 +33,5 @@ en:
         attributes:
           start_time:
             wrong_time: "should be at least in current time"
+          repeats_every_n_weeks:
+            days_not_exist: "You must select at least one day on the week"
