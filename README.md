@@ -5,10 +5,11 @@ Second test project for FlatStack
 Now Finished:
 
 - User registration\authorization
-- User edit, update
+- User edit\update
 - Event create\update\destroy - through ajax and jquery
 - Some policy for events routing(correct_user, etc.)
 - Event recurring for days
+- Event recurring for weeks
 
 ### ER-diagram
 
