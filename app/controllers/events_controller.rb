@@ -14,7 +14,7 @@ class EventsController < BaseEventsController
   def create
     @event = current_user.events.build(event_params).decorate
     @event_instances = if @event.save
-                         EventInstance.single_event_occurrences(@event, date_param)
+                         EventInstance.single_event_occurrences(@event, end_date: date_param)
                        end
     respond_to do |format|
       format.js
@@ -29,7 +29,7 @@ class EventsController < BaseEventsController
 
   def update
     @event_instances = if @event.update_attributes(event_params)
-                         EventInstance.single_event_occurrences(@event, date_param)
+                         EventInstance.single_event_occurrences(@event, end_date: date_param)
                        end
     respond_to do |format|
       format.js

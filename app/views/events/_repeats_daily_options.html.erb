@@ -1,6 +1,6 @@
 <div id="repeats_daily_options" class="form-group event_option">
   <%= form.label :repeats_every_n_days, 'Every n days', class: 'col-md-3 control-label' %>
   <div class="col-md-8">
-    <%= form.number_field :repeats_every_n_days, class: 'form-control' %>
+    <%= form.number_field :repeats_every_n_days, class: 'form-control', min: 1 %>
   </div>
 </div>

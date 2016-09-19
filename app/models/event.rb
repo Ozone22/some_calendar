@@ -40,6 +40,19 @@ class Event < ActiveRecord::Base
     self.schedule = schedule
   end
 
+  scope :events_by_time, -> (start_time, end_time) {
+    where {
+      (
+        (repeat_type.eq 'never') &
+        (start_date >= start_time) &
+        (start_date <= end_time)
+      ) | (
+        (repeat_type.not_eq 'never') &
+        (start_date <= end_time)
+      )
+    }
+  }
+
   private
 
   def start_date_cannot_be_in_the_past

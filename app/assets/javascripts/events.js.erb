@@ -1,19 +1,6 @@
 $.fn.datepicker.defaults.format = "yyyy-mm-dd";
 
-$(function() {
-  $(document).on('change','#event_repeat_type',function() {
-    $('.event_option').hide();
-    switch (this.value) {
-      case 'daily':
-            $('#repeats_daily_options').css('display','block');
-            break;
-      case 'weekly':
-            $('#repeats_weekly_options').css('display', 'block');
-            break;
-    }
-  });
-});
-
+var lastPickedEventDate;
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -26,8 +13,32 @@ function getParameterByName(name, url) {
 }
 
 $(function() {
+
+  $(document).on('click', 'a[data-target="#myModal"]', function () {
+    lastPickedEventDate = $(this).closest('td').attr('id');
+  });
+
+  $(document).on('hide.bs.modal', '#myModal', function() {
+    $('.modal-note').hide();
+    lastPickedEventDate = undefined;
+  });
+
+  $(document).on('change','#event_repeat_type',function() {
+    $('.event_option').hide();
+    switch (this.value) {
+      case 'daily':
+            $('#repeats_daily_options').css('display','block');
+            break;
+      case 'weekly':
+            $('#repeats_weekly_options').css('display', 'block');
+            break;
+    }
+  });
+
   $(document).on('shown.bs.modal', '#myModal', function() {
     $("#current_page_date").val(getParameterByName('start_date'));
-  })
+    if (typeof lastPickedEventDate != 'undefined')
+      $('.modal-note').fadeIn('slow').children('p').html('Selected day: ' + lastPickedEventDate);
+  });
 });
 

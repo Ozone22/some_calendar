@@ -40,6 +40,9 @@ gem 'draper'
 # Schedule
 gem 'ice_cube'
 
+# Customize for queries
+gem 'squeel'
+
 # Calendar view
 gem 'simple_calendar'
 

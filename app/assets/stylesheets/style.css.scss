@@ -99,6 +99,17 @@ header {
 
 //Event form
 
+.modal-note {
+  display: none;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 10px 0 -10px 0;
+  p {
+    font-weight: 500;
+    padding: 10px 0 10px 0;
+  }
+}
+
 #repeats_daily_options { display:none; }
 #repeats_weekly_options { display:none; }
 #repeats_monthly_options { display:none; }
