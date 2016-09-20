@@ -25,9 +25,11 @@
 
     <%= render 'events/repeats_daily_options', form: f %>
     <%= render 'events/repeats_weekly_options', form: f %>
+    <%= render 'events/repeats_monthly_options', form: f %>
 
     <%= hidden_field_tag 'current_page_date' %>
 
+    <!-- Buttons for the form-->
     <div class="row buttons">
 
       <% if local_assigns[:show_form_buttons] %>

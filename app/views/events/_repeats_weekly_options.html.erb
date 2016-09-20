@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="form-group">
-    <%= form.label :repeats_weekly_days_of_the_week, 'Every n weeks', class: 'col-md-3 control-label' %>
+    <%= form.label :repeats_weekly_days_of_the_week, 'Day of week', class: 'col-md-3 control-label' %>
     <div class="col-md-8">
       <%= form.collection_check_boxes(:repeats_weekly_days_of_the_week, array_format(Event::DAYS_OF_THE_WEEK),
                                       :last, :first, include_hidden: false) do |b| %>

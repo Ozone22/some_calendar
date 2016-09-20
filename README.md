@@ -10,6 +10,7 @@ Now Finished:
 - Some policy for events routing(correct_user, etc.)
 - Event recurring for days
 - Event recurring for weeks
+- Event recurring for months
 
 ### ER-diagram
 

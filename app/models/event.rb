@@ -8,21 +8,25 @@ class Event < ActiveRecord::Base
 
   REPEATS_OPTIONS = %w(never daily weekly monthly yearly)
   DAYS_OF_THE_WEEK = %w(sunday monday tuesday wednesday thursday friday saturday)
-  DAYS_OF_THE_MONTH = (1..31).to_a
   MONTHS_OF_THE_YEAR = %w(january february march april may june july august september october november december)
 
   attr_accessor :repeats_every_n_days
   attr_accessor :repeats_every_n_weeks
   attr_accessor :repeats_weekly_days_of_the_week
+  attr_accessor :repeats_every_n_months
 
   validate :start_date_cannot_be_in_the_past
   validates :name, presence: true, length: { minimum: 2, maximum: 200 }
   validates :user_id, presence: true
   validates :start_date, presence: :true
   validates :repeat_type, presence: :true
-  validates :repeats_every_n_days, presence: true, if: Proc.new { |f| f.repeat_type.eql?('daily') }
-  validates :repeats_every_n_weeks, presence: true, if: Proc.new { |f| f.repeat_type.eql?('weekly') }
+  validates :repeats_every_n_days, presence: true,
+            numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('daily') }
+  validates :repeats_every_n_weeks, presence: true,
+            numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('weekly') }
   validate :must_have_at_least_one_day_of_the_week, if: Proc.new { |f| f.repeat_type.eql?('weekly') }
+  validates :repeats_every_n_months, presence: true,
+            numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('monthly') }
 
   serialize :schedule, IceCube::Schedule
 
@@ -34,6 +38,9 @@ class Event < ActiveRecord::Base
       when 'weekly'
         days = repeats_weekly_days_of_the_week.map { |day_number| day_number.to_i }
         schedule.add_recurrence_rule IceCube::Rule.weekly(repeats_every_n_weeks).day(days)
+      when 'monthly'
+        day = start_date.day
+        schedule.add_recurrence_rule IceCube::Rule.monthly(repeats_every_n_months).day_of_month(day)
       else
         schedule.add_recurrence_time(start_date)
     end

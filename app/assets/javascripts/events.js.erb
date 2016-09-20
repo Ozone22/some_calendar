@@ -27,10 +27,13 @@ $(function() {
     $('.event_option').hide();
     switch (this.value) {
       case 'daily':
-            $('#repeats_daily_options').css('display','block');
+            $('#repeats_daily_options').show();
             break;
       case 'weekly':
-            $('#repeats_weekly_options').css('display', 'block');
+            $('#repeats_weekly_options').show();
+            break;
+      case 'monthly':
+            $('#repeats_monthly_options').show();
             break;
     }
   });
