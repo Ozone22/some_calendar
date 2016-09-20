@@ -35,3 +35,5 @@ en:
             wrong_time: "should be at least in current time"
           repeats_every_n_weeks:
             days_not_exist: "You must select at least one day on the week"
+          repeats_every_n_years:
+            month_not_exist: "You must select at least one month on the year"

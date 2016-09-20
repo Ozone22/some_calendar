@@ -11,6 +11,12 @@ Now Finished:
 - Event recurring for days
 - Event recurring for weeks
 - Event recurring for months
+- Event recurring for years
+
+TODO:
+
+- Rspec tests for recurring events
+- Additional functional with description
 
 ### ER-diagram
 

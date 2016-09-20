@@ -14,19 +14,30 @@ class Event < ActiveRecord::Base
   attr_accessor :repeats_every_n_weeks
   attr_accessor :repeats_weekly_days_of_the_week
   attr_accessor :repeats_every_n_months
+  attr_accessor :repeats_every_n_years
+  attr_accessor :repeats_yearly_month_of_the_year
 
   validate :start_date_cannot_be_in_the_past
   validates :name, presence: true, length: { minimum: 2, maximum: 200 }
   validates :user_id, presence: true
   validates :start_date, presence: :true
   validates :repeat_type, presence: :true
+
   validates :repeats_every_n_days, presence: true,
             numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('daily') }
+
   validates :repeats_every_n_weeks, presence: true,
             numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('weekly') }
-  validate :must_have_at_least_one_day_of_the_week, if: Proc.new { |f| f.repeat_type.eql?('weekly') }
+
+  validate :must_have_at_least_one_day_on_the_week, if: Proc.new { |f| f.repeat_type.eql?('weekly') }
+
   validates :repeats_every_n_months, presence: true,
             numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('monthly') }
+
+  validates :repeats_every_n_years, presence: true,
+            numericality: { greater_than: 0 }, if: Proc.new { |f| f.repeat_type.eql?('yearly') }
+
+  validate :must_have_at_least_one_month_on_the_year, if: Proc.new { |f| f.repeat_type.eql?('yearly') }
 
   serialize :schedule, IceCube::Schedule
 
@@ -41,6 +52,9 @@ class Event < ActiveRecord::Base
       when 'monthly'
         day = start_date.day
         schedule.add_recurrence_rule IceCube::Rule.monthly(repeats_every_n_months).day_of_month(day)
+      when 'yearly'
+        months = repeats_yearly_month_of_the_year.map { |month_number| month_number.to_i + 1 }
+        schedule.add_recurrence_rule IceCube::Rule.yearly(repeats_every_n_years).month_of_year(months)
       else
         schedule.add_recurrence_time(start_date)
     end
@@ -68,9 +82,15 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def must_have_at_least_one_day_of_the_week
+  def must_have_at_least_one_day_on_the_week
     if repeats_weekly_days_of_the_week.nil?
       errors.add(:base, I18n.t('activerecord.errors.event.attributes.repeats_every_n_weeks.days_not_exist'))
+    end
+  end
+
+  def must_have_at_least_one_month_on_the_year
+    if repeats_yearly_month_of_the_year.nil?
+      errors.add(:base, I18n.t('activerecord.errors.event.attributes.repeats_every_n_years.month_not_exist'))
     end
   end
 

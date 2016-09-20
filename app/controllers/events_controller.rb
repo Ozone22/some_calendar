@@ -48,7 +48,8 @@ class EventsController < BaseEventsController
   def event_params
     params.require(:event).permit(:name, :start_date, :repeat_type, :repeats_every_n_days,
                                   :repeats_every_n_weeks, :repeats_every_n_months,
-                                  :repeats_weekly_days_of_the_week => [])
+                                  :repeats_every_n_years, :repeats_weekly_days_of_the_week => [],
+                                  :repeats_yearly_month_of_the_year => [])
   end
 
   def creator
