@@ -12,6 +12,7 @@ Now Finished:
 - Event recurring for weeks
 - Event recurring for months
 - Event recurring for years
+- Events and users covered with Rspec tests
 
 TODO:
 
