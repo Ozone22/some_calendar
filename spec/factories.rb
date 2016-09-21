@@ -10,6 +10,7 @@ FactoryGirl.define do
   factory :event do
     sequence(:name) { |n| "TestEvent#{n}" }
     start_date Date.tomorrow
+    repeat_type 'never'
     user
   end
 end
