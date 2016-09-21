@@ -15,7 +15,6 @@ Now Finished:
 
 TODO:
 
-- Rspec tests for recurring events
 - Additional functional with description
 
 ### ER-diagram
