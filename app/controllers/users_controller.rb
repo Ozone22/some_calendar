@@ -1,8 +1,17 @@
 class UsersController < ApplicationController
 
-  before_action :signed_in_user, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update, :index]
   before_action :unsigned_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
+
+
+  def index
+    @users = User.all_except(current_user)
+    @users = @users.where(email: params[:search]) unless params[:search].blank?
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def new
     @user = User.new

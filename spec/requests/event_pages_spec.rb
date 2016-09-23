@@ -13,7 +13,7 @@ describe 'Event pages' do
 
   subject { page }
 
-  describe 'index page - create' do
+  describe 'index page' do
 
     before { visit user_events_path(user) }
 
@@ -159,7 +159,7 @@ describe 'Event pages' do
       end
     end
 
-    describe 'all user events - index', js: true do
+    describe 'all user events', js: true do
 
       describe 'another user events page' do
 
@@ -170,7 +170,7 @@ describe 'Event pages' do
 
       end
 
-      describe 'index page - all user events' do
+      describe 'index page' do
 
         before { visit events_path }
 
@@ -192,7 +192,7 @@ describe 'Event pages' do
       end
     end
 
-    describe 'current user events - index', js: true do
+    describe 'index page - current user events', js: true do
 
       before { visit user_events_path(user) }
 
@@ -239,6 +239,32 @@ describe 'Event pages' do
 
       end
     end
+
+    describe 'index page - find user free days', js:true do
+      before { click_link('Users free days') }
+
+      it { should have_field 'search' }
+      it { should have_button 'Search' }
+      it { should have_button 'Show' }
+      it { should have_content 'Please select user' }
+
+      describe 'user find form' do
+        describe 'user search' do
+          before do
+            fill_in 'search', with: another_user.email
+            click_button 'Search'
+          end
+          specify { expect { find_field('users').value }.eql?(another_user.email) }
+        end
+
+        describe 'free days' do
+          before { click_button 'Show' }
+
+          it { should have_css('div.free_day') }
+        end
+      end
+    end
+
   end
 
 end

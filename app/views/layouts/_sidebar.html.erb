@@ -12,6 +12,11 @@
       <li>
         <%= active_link_to '<i class="fa fa-calendar"></i>All events'.html_safe, events_path %>
       </li>
+      <li>
+        <%= link_to users_path,  'data-toggle' => 'modal', 'data-target' => '#myModal', remote: true do %>
+          <i class="fa fa-user"></i>Users free days
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>

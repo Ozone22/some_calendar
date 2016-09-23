@@ -97,6 +97,24 @@ header {
   }
 }
 
+.free_day {
+  font-size: 1.5em;
+  text-align: center;
+  .check_color {
+    color: green;
+  }
+}
+
+// Free users days form
+
+.users_select {
+  margin-top: 5%;
+  .description_span {
+    margin-top: 2%;
+    font-size: 0.9em;
+  }
+}
+
 //Event form
 
 .modal-note {

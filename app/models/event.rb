@@ -61,7 +61,7 @@ class Event < ActiveRecord::Base
     self.schedule = schedule
   end
 
-  scope :events_by_time, -> (start_time, end_time) {
+  scope :by_time, -> (start_time, end_time) {
     where {
       (
         (repeat_type.eq 'never') &

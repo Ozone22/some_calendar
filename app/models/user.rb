@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  scope :all_except, ->(user) { where.not(id: user.id) }
+
   def self.new_token
     SecureRandom.urlsafe_base64
   end
