@@ -14,11 +14,11 @@ Now Finished:
 - Event recurring for years
 - Events and users covered with Rspec tests
 - Additional functional
+- Data populated(using Factory gem)
 
 TODO:
 
 - Some js validations, maybe
-- Some data fixtures, maybe
 - Deploy to heroku
 
 ### Additional functional - find free days between users
