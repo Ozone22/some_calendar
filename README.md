@@ -1,6 +1,8 @@
 ## Calendar
 
-Second test project for FlatStack
+Second test project for FlatStack.
+https://some-calendar-on-rails.herokuapp.com
+
 
 Now Finished:
 
@@ -15,11 +17,11 @@ Now Finished:
 - Events and users covered with Rspec tests
 - Additional functional
 - Data populated(using Factory gem)
+- Heroku deploy
 
 TODO:
 
 - Some js validations, maybe
-- Deploy to heroku
 
 ### Additional functional - find free days between users
 
