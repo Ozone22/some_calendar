@@ -20,4 +20,8 @@ module BaseViewHelper
     array.each_with_index.map { |element, index| [element, index] }
   end
 
+  def short_name(name)
+    name.length > 20 ? name[0..19] : name
+  end
+
 end
