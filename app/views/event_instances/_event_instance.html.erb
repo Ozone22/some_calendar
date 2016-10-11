@@ -1,4 +1,4 @@
 <div class="event<%= event_instance.event_id %>">
   <%= link_to short_name(event_instance.name), edit_user_event_path(current_user, event_instance.event_id),
-              remote: true, 'data-toggle' => 'modal', 'data-target' => '#myModal' %>
+              remote: true, class: 'event_modal_link'  %>
 </div>

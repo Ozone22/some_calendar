@@ -14,7 +14,7 @@ function getParameterByName(name, url) {
 
 $(function() {
 
-  $(document).on('click', 'a[data-target="#myModal"]', function () {
+  $(document).on('click', '.event_modal_link', function () {
     lastPickedEventDate = $(this).closest('td').attr('id');
   });
 
