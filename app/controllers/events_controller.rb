@@ -6,9 +6,6 @@ class EventsController < BaseEventsController
 
   def new
     @event = Event.new.decorate
-    respond_to do |format|
-      format.js
-    end
   end
 
   def create
@@ -16,31 +13,19 @@ class EventsController < BaseEventsController
     @event_instances = if @event.save
                          EventInstance.single_event_occurrences(@event, end_date: date_param)
                        end
-    respond_to do |format|
-      format.js
-    end
   end
 
   def edit
-    respond_to do |format|
-      format.js
-    end
   end
 
   def update
     @event_instances = if @event.update_attributes(event_params)
                          EventInstance.single_event_occurrences(@event, end_date: date_param)
                        end
-    respond_to do |format|
-      format.js
-    end
   end
 
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.js
-    end
+    @event.destroy!
   end
 
   private
@@ -55,7 +40,7 @@ class EventsController < BaseEventsController
   def creator
     if (@event = Event.find_by(id: params[:id]))
       @event = @event.decorate
-      render 'events/show' unless current_user?(@event.user)
+      render 'show' unless current_user?(@event.user)
     else
       redirect_to user_events_path
     end

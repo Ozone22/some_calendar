@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   resources :users, only: [:new, :create, :edit, :update, :index] do
-    resources :events, except: [:show, :index]
+    resources :events, except: [:show, :index], defaults: { format: 'js' }
     get '/events' => 'event_instances#index'
   end
 

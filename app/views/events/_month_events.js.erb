@@ -1,0 +1,5 @@
+<% if event.in_current_month? %>
+  <% event_instances.each do |event_instance| %>
+    $("#<%= formatted_date(event_instance.start_date) %>").append("<%= j (render event_instance) %>");
+  <% end %>
+<% end %>

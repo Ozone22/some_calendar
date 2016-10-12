@@ -2,16 +2,6 @@ $.fn.datepicker.defaults.format = "yyyy-mm-dd";
 
 var lastPickedEventDate;
 
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
 $(function() {
 
   $(document).on('click', '.event_modal_link', function () {
@@ -42,7 +32,6 @@ $(function() {
   });
 
   $(document).on('shown.bs.modal', '#myModal', function() {
-    $("#current_page_date").val(getParameterByName('start_date'));
     if (typeof lastPickedEventDate != 'undefined')
       $('.modal-note').fadeIn('slow').children('p').html('Selected day: ' + lastPickedEventDate);
   });

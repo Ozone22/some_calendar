@@ -1,10 +1,6 @@
 <% if @event.errors.any? %>
   $('#ajax_body').html("<%= j (render 'events/form', show_form_buttons: true) %>");
 <% else %>
-  <% if @event.in_current_month? %>
-    <% @event_instances.each do |event_instance| %>
-      $("#<%= formatted_date(event_instance.start_date) %>").append("<%= j (render event_instance) %>");
-    <% end %>
-  <% end %>
+  <%= render 'month_events', event: @event, event_instances: @event_instances %>
   $('#myModal').modal('hide');
 <% end %>
