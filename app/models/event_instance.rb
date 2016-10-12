@@ -34,13 +34,11 @@ class EventInstance
                user.events.by_time(start_date, end_date)
              end
 
-    occurrence_args = { start_date: start_date, end_date: end_date, calculate_dates: false }
-
     occurrences = events.map do |event|
       if block_given?
         block.call(event, start_date, end_date)
       else
-        self.single_event_occurrences(event, occurrence_args)
+        self.single_event_occurrences(event, self.occurrence_params(start_date, end_date))
       end
     end
 
@@ -50,6 +48,12 @@ class EventInstance
 
   def to_partial_path
     'event_instances/event_instance'
+  end
+
+  private
+
+  def self.occurrence_params(start_date, end_date)
+    { start_date: start_date, end_date: end_date, calculate_dates: false }
   end
 
 end

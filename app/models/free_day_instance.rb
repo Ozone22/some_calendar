@@ -16,14 +16,14 @@ class FreeDayInstance
     month_days_array = CalendarHelper.array_of_month_days(start_date: start_date, end_date: next_month)
 
     event_days = [user1, user2].map do |user|
-      EventInstance.occurrences(user, end_date, &self.event_dates_block).map do |date|
-        date.strftime('%Y-%m-%d')
+      EventInstance.occurrences(user, end_date, &self.event_dates_block).map do |occurrence_date|
+        occurrence_date.strftime('%Y-%m-%d')
       end
     end
 
     event_days.flatten!
     free_days = month_days_array - event_days
-    free_days.map { |day| FreeDayInstance.new(day.to_datetime) }
+    free_days.map { |free_day| FreeDayInstance.new(free_day.to_datetime) }
   end
 
   def to_partial_path
