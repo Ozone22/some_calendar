@@ -4,7 +4,7 @@ var lastPickedEventDate;
 
 $(function() {
 
-  $(document).on('click', '.event_modal_link', function () {
+  $(document).on('click', 'a[data-target="#myModal"]', function () {
     lastPickedEventDate = $(this).closest('td').attr('id');
   });
 
