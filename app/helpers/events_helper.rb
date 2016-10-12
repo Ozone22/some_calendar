@@ -8,4 +8,8 @@ module EventsHelper
     end
   end
 
+  def date_param
+    params[:start_date].to_time unless params[:start_date].nil?
+  end
+
 end
